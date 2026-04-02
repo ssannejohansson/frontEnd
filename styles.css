@@ -1,0 +1,1240 @@
+:root {
+    --bg: #f3f3f3;
+    --panel: #ffffff;
+    --text: #1f1f1f;
+    --muted: #666666;
+    --line: #cfcfcf;
+    --primary: #1f6ea9;
+    --primary-dark: #17547f;
+    --ok: #cfe9c6;
+    --warn: #f6e5a8;
+    --bad: #efb5b5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at 20% 0%, #fafafa, #ececec 50%, #e5e5e5 100%);
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.brand-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: linear-gradient(145deg, #50b3d6, #d62839);
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.brand p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.top-nav a {
+    text-decoration: none;
+    border: 1px solid var(--line);
+    color: #333;
+    background: #f5f5f5;
+    border-radius: 5px;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.85rem;
+}
+
+.top-nav a.active {
+    background: #e1edf7;
+    border-color: #a8c5e1;
+    font-weight: 700;
+}
+
+.dashboard-container {
+    display: flex;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+.sidebar {
+    flex: 0 0 200px;
+    height: fit-content;
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar-btn {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--line);
+    background: #f5f5f5;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.sidebar-btn:hover {
+    background: #e8e8e8;
+    border-color: #999;
+}
+
+.sidebar-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.dashboard-main {
+    flex: 1;
+    min-width: 0;
+}
+
+main {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.section-content.hidden {
+    display: none;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.1rem;
+    margin-bottom: 1.1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.muted {
+    color: var(--muted);
+    margin-top: -0.2rem;
+}
+
+.schedule-helper-card {
+    border: 1px solid #cfe0f1;
+    background: #f3f8fe;
+    border-radius: 8px;
+    padding: 0.75rem 0.85rem;
+    margin: 0.75rem 0 1rem;
+}
+
+.schedule-helper-card h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.9rem;
+}
+
+.schedule-helper-card p {
+    margin: 0;
+    font-size: 0.82rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0.5rem 0.8rem;
+    max-width: 420px;
+}
+
+.form-grid.two-cols {
+    max-width: 640px;
+}
+
+.form-grid label {
+    align-self: center;
+}
+
+.register-form {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 2rem;
+    max-width: 700px;
+}
+
+.register-form .form-left {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+}
+
+.register-form .form-left label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    font-size: 0.9rem;
+}
+
+.register-form .form-left input,
+.register-form .form-left select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+}
+
+.register-form .form-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.register-form .form-right label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.photo-upload {
+    border: 2px dashed var(--line);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    background: #fafafa;
+}
+
+.photo-upload:hover {
+    border-color: var(--primary);
+    background: #f3f7fb;
+}
+
+.photo-upload input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.photo-upload img {
+    max-width: 100%;
+    max-height: 120px;
+    border-radius: 4px;
+}
+
+.photo-upload #photoPlaceholder {
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.register-form .btn {
+    grid-column: 1 / -1;
+    width: fit-content;
+}
+
+.required {
+    color: var(--bad);
+}
+
+input,
+select,
+button {
+    font: inherit;
+}
+
+input,
+select {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+}
+
+.btn {
+    border: 1px solid var(--primary-dark);
+    background: var(--primary);
+    color: #fff;
+    border-radius: 4px;
+    padding: 0.45rem 0.8rem;
+    cursor: pointer;
+    justify-self: start;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+}
+
+.btn-secondary {
+    background: #ececec;
+    border-color: #bcbcbc;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #dfdfdf;
+}
+
+.hint {
+    margin-top: 0.8rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.error {
+    color: #ac2a2a;
+    font-weight: 700;
+    margin-top: 0.6rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.employee-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.8rem;
+}
+
+.employee-card {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.5rem;
+    background: #fafafa;
+}
+
+.employee-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 1rem;
+    border: 2px solid var(--line);
+}
+
+.employee-card .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-bottom: 0.45rem;
+    background: linear-gradient(140deg, #444, #222);
+}
+
+.employee-card h3 {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.employee-card p {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.employee-card:hover {
+    background: #f0f0f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.employee-profile-info {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.employee-profile-info p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+.availability-display {
+    margin-top: 1.5rem;
+}
+
+.availability-display h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+}
+
+th,
+td {
+    border: 1px solid var(--line);
+    padding: 0.45rem;
+    text-align: center;
+    font-size: 0.86rem;
+}
+
+th:first-child,
+td:first-child {
+    text-align: left;
+    min-width: 110px;
+}
+
+.cell-available {
+    background: var(--ok);
+}
+
+.cell-maybe {
+    background: var(--warn);
+}
+
+.cell-unavailable {
+    background: var(--bad);
+}
+
+.cell-booked {
+    background: #bfd6f6;
+    font-weight: 700;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+}
+
+.modal-content {
+    width: min(460px, 100%);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.modal-content-large {
+    width: min(900px, 100%);
+}
+
+.modal-form fieldset {
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    margin: 0.6rem 0;
+}
+
+.modal-form legend {
+    padding: 0 0.4rem;
+}
+
+.modal-form label {
+    display: inline-flex;
+    gap: 0.3rem;
+    margin-right: 0.8rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: end;
+    margin-top: 1rem;
+}
+
+/* Availability Grid Form Styles */
+.availability-grid-form {
+    overflow-x: auto;
+}
+
+.availability-grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    min-width: 500px;
+}
+
+.availability-grid-row {
+    display: flex;
+    border-bottom: 1px solid var(--line);
+}
+
+.availability-grid-row:last-child {
+    border-bottom: none;
+}
+
+.availability-grid-cell {
+    flex: 1;
+    min-width: 60px;
+    padding: 0.6rem 0.4rem;
+    border-right: 1px solid var(--line);
+    text-align: center;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.availability-grid-cell:last-child {
+    border-right: none;
+}
+
+.availability-grid-cell.header {
+    background: #f0f0f0;
+    font-weight: 600;
+    color: #333;
+}
+
+.availability-grid-cell.shift-label {
+    background: #fafafa;
+    font-weight: 500;
+    color: #333;
+    flex: 0 0 100px;
+}
+
+.availability-grid-cell[type="button"] {
+    background: var(--ok);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.15s;
+    padding: 0.6rem 0.4rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.availability-grid-cell[type="button"]:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+.availability-grid-cell[type="button"]:active {
+    transform: scale(0.98);
+}
+
+.availability-grid-cell[type="button"].available {
+    background: var(--ok);
+}
+
+.availability-grid-cell[type="button"].maybe {
+    background: var(--warn);
+}
+
+.availability-grid-cell[type="button"].unavailable {
+    background: var(--bad);
+}
+
+/* Schedule Grid Styles */
+.schedule-controls {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.schedule-legend {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.schedule-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.schedule-tools label {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.schedule-tools select {
+    min-width: 110px;
+    font-size: 0.82rem;
+    padding: 0.28rem 0.4rem;
+}
+
+.schedule-tools .btn {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.55rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.legend-color.available {
+    background: var(--ok);
+}
+
+.legend-color.maybe {
+    background: var(--warn);
+}
+
+.legend-color.unavailable {
+    background: var(--bad);
+}
+
+.legend-color.booked {
+    background: #bfd6f6;
+}
+
+.schedule-grid-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+}
+
+.btn.btn-secondary.is-active {
+    background: #dceaf8;
+    border-color: #89acd1;
+    color: #1c4b79;
+}
+
+.employees-list {
+    flex-shrink: 0;
+    min-width: 120px;
+}
+
+.employee-slot {
+    padding: 0.6rem 0.4rem;
+    border: 1px solid var(--line);
+    border-bottom: none;
+    font-size: 0.85rem;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.employee-slot:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.employee-slot h4 {
+    margin: 0 0 0.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.employee-slot p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.75rem;
+}
+
+.schedule-grid-wrapper {
+    overflow-x: auto;
+    flex: 1;
+}
+
+.schedule-grid {
+    display: grid;
+    gap: 0;
+    min-width: 1120px;
+    border: 1px solid var(--line);
+    border-radius: 0;
+}
+
+.schedule-grid.compact-mode .grid-cell {
+    min-height: 30px;
+    padding: 0.3rem 0.25rem;
+    font-size: 0.75rem;
+}
+
+.schedule-grid.compact-mode .multi-assignment-cell {
+    min-height: 52px;
+}
+
+.schedule-grid.compact-mode .assignment-pill {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.35rem;
+}
+
+.grid-cell.day-filter-muted {
+    opacity: 0.25;
+    filter: grayscale(0.6);
+}
+
+.grid-header {
+    display: contents;
+}
+
+.grid-cell {
+    border: 1px solid var(--line);
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+    font-size: 0.92rem;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-cell.header {
+    background: #f0f0f0;
+    font-weight: 600;
+    border-color: #999;
+}
+
+.grid-cell.shift-label {
+    text-align: left;
+    padding-left: 0.8rem;
+    background: #f9f9f9;
+    font-weight: 500;
+}
+
+.grid-cell.available {
+    background: var(--ok);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.grid-cell.available:hover {
+    opacity: 0.8;
+}
+
+.grid-cell.maybe {
+    background: var(--warn);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.grid-cell.maybe:hover {
+    opacity: 0.8;
+}
+
+.grid-cell.unavailable {
+    background: var(--bad);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.grid-cell.unavailable:hover {
+    opacity: 0.8;
+}
+
+.grid-cell.booked {
+    background: #bfd6f6;
+    font-weight: 600;
+    cursor: default;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: opacity 0.2s, box-shadow 0.2s;
+}
+
+.grid-cell.booked:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.multi-assignment-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 96px;
+    transition: border-color 0.15s, background-color 0.15s;
+}
+
+.multi-assignment-cell.drop-active {
+    border: 2px dashed #7aa7da;
+    background: #ddecff;
+}
+
+.assignment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    font-size: 0.86rem;
+    font-weight: 500;
+    line-height: 1.25;
+    word-break: break-word;
+}
+
+.assignment-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+    padding: 0.24rem 0.52rem;
+    border: 1px solid #9db9df;
+    border-radius: 999px;
+    background: #eaf2fd;
+    color: #20456c;
+    font-size: 0.78rem;
+    line-height: 1.1;
+    max-width: 100%;
+}
+
+.assignment-pill-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.assignment-remove-btn {
+    border: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    font-size: 0.68rem;
+    line-height: 1;
+    cursor: pointer;
+    background: #c7dff9;
+    color: #1c4168;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.assignment-giveaway-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 0.05rem 0.4rem;
+    font-size: 0.66rem;
+    cursor: pointer;
+    background: #d9ecff;
+    color: #1c4168;
+    opacity: 0;
+    transform: translateY(1px);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.assignment-pill:hover .assignment-giveaway-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.assignment-giveaway-btn:hover {
+    background: #c2e2ff;
+}
+
+.assignment-pill:hover .assignment-remove-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.assignment-remove-btn:hover {
+    background: #aacdf1;
+}
+
+.assignment-more {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.45rem;
+    border: 1px dashed #9db9df;
+    border-radius: 999px;
+    background: #f6faff;
+    color: #365c84;
+    font-size: 0.68rem;
+    line-height: 1.1;
+}
+
+.assignment-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.4rem;
+}
+
+.open-slot-badge {
+    font-size: 0.7rem;
+    padding: 0.14rem 0.42rem;
+    border-radius: 999px;
+    border: 1px solid #9cb8d9;
+}
+
+.open-slot-badge.open {
+    background: #e6f5df;
+    color: #2f5d1e;
+}
+
+.open-slot-badge.closed {
+    background: #f6e3e3;
+    color: #7d2d2d;
+}
+
+.open-slot-controls {
+    display: inline-flex;
+    gap: 0.2rem;
+}
+
+.open-slot-btn {
+    border: 1px solid #94b1d2;
+    background: #fff;
+    color: #1f4b75;
+    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+    line-height: 1;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.open-slot-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.assignment-pill[draggable="true"],
+.staff-pool-pill[draggable="true"] {
+    cursor: grab;
+}
+
+.assignment-pill:active,
+.staff-pool-pill:active {
+    cursor: grabbing;
+}
+
+.assignment-empty {
+    color: var(--muted);
+    font-style: italic;
+}
+
+.staff-drag-row {
+    margin-top: 1rem;
+}
+
+.staff-pool {
+    border: 1px dashed #9cb7d9;
+    border-radius: 8px;
+    padding: 0.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    background: #f7fbff;
+    min-height: 48px;
+    transition: border-color 0.15s, background-color 0.15s;
+}
+
+.staff-pool.drop-active {
+    border-color: #4f84bf;
+    background: #e6f1ff;
+}
+
+.staff-pool-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.24rem 0.5rem;
+    border: 1px solid #84a9d3;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #20456c;
+    font-size: 0.74rem;
+    line-height: 1.1;
+}
+
+.panel-subtle {
+    margin-top: 1rem;
+    background: #fbfdff;
+    border-style: dashed;
+}
+
+.schedule-activity-panel {
+    margin-top: 1rem;
+}
+
+.schedule-team-availability {
+    margin-top: 1rem;
+}
+
+.schedule-team-availability summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.panel-subtle h3 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+}
+
+.schedule-activity-list {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.requests-title {
+    margin-top: 0.9rem;
+}
+
+.shift-request-list {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.shift-request-item {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    padding: 0.55rem 0.65rem;
+}
+
+.shift-request-item strong {
+    display: block;
+    font-size: 0.84rem;
+    margin-bottom: 0.18rem;
+}
+
+.shift-request-item p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.shift-request-note {
+    color: var(--muted);
+    margin-top: 0.2rem !important;
+}
+
+.shift-request-actions {
+    margin-top: 0.45rem;
+    display: flex;
+    gap: 0.35rem;
+}
+
+.employee-shift-requests {
+    margin-top: 1rem;
+}
+
+.schedule-activity-item {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    padding: 0.65rem 0.75rem;
+}
+
+.schedule-activity-item strong {
+    display: block;
+    font-size: 0.86rem;
+    text-transform: capitalize;
+    margin-bottom: 0.2rem;
+}
+
+.schedule-activity-item p {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.82rem;
+}
+
+.schedule-activity-meta {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.schedule-activity-empty {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.save-toast {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 12;
+    background: #173a58;
+    color: #fff;
+    border: 1px solid #1f6ea9;
+    border-radius: 8px;
+    padding: 0.55rem 0.85rem;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+    font-size: 0.83rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.save-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Drag and drop feedback */
+.grid-cell.booked[draggable="true"] {
+    transition: opacity 0.2s;
+}
+
+.grid-cell.booked-over {
+    background: #a0c0e8;
+    border: 2px dashed #666;
+}
+
+/* Team Availability Grid */
+.team-availability-grid {
+    display: grid;
+    gap: 0;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.team-availability-row {
+    display: grid;
+    grid-template-columns: 180px repeat(7, 80px);
+    gap: 0;
+    min-width: max-content;
+}
+
+.team-availability-row.header-row {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--panel);
+}
+
+.team-availability-cell {
+    padding: 0.75rem;
+    text-align: center;
+    border: 1px solid var(--line);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 45px;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.team-availability-cell.header {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.team-availability-cell.employee-name {
+    background: #f9f9f9;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    padding-left: 1rem;
+}
+
+.team-availability-cell.available {
+    background: var(--ok);
+    color: #2d5016;
+}
+
+.team-availability-cell.maybe {
+    background: var(--warn);
+    color: #8b6914;
+}
+
+.team-availability-cell.unavailable {
+    background: var(--bad);
+    color: #8b2d2d;
+}
+
+@media (max-width: 760px) {
+    .topbar {
+        flex-wrap: wrap;
+    }
+
+    .form-grid,
+    .form-grid.two-cols {
+        grid-template-columns: 1fr;
+        max-width: none;
+    }
+
+    .register-form {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: fit-content;
+    }
+
+    .schedule-legend {
+        gap: 1rem;
+    }
+
+    .schedule-grid-container {
+        flex-direction: column;
+    }
+
+    .schedule-grid {
+        min-width: 980px;
+    }
+
+    .dashboard-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .sidebar {
+        flex: 1;
+        position: static;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sidebar-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+}

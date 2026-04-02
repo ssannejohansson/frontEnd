@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employer Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <h1>Sundsgarden</h1>
+          <p>Employer View</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="employer.html" class="active">Dashboard</a>
+      </nav>
+      <button id="logoutBtn" class="btn btn-secondary" type="button">Log out</button>
+    </header>
+
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <button class="sidebar-btn active" id="listEmployeesBtn" data-section="listEmployees">
+            List of Employees
+          </button>
+          <button class="sidebar-btn" id="registerEmployeeBtn" data-section="registerEmployee">
+            Register New Employee
+          </button>
+          <button class="sidebar-btn" id="workScheduleBtn" data-section="workSchedule">
+            Work Schedule
+          </button>
+        </nav>
+      </aside>
+
+      <main class="dashboard-main">
+        <section class="panel section-content" id="listEmployeesSection">
+          <h2>List of Employees</h2>
+          <div class="employee-cards" id="employeeCards"></div>
+        </section>
+
+        <section class="panel section-content hidden" id="registerEmployeeSection">
+          <h2>Register new employee</h2>
+          <form id="registerEmployeeForm" class="register-form">
+            <div class="form-left">
+              <label for="firstName">First name <span class="required">*</span></label>
+              <input id="firstName" name="firstName" type="text" required />
+
+              <label for="lastName">Last name <span class="required">*</span></label>
+              <input id="lastName" name="lastName" type="text" required />
+
+              <label for="newEmail">Email <span class="required">*</span></label>
+              <input id="newEmail" name="newEmail" type="email" required />
+
+              <label for="newRole">Role <span class="required">*</span></label>
+              <select id="newRole" name="newRole" required>
+                <option value="">Select a role</option>
+                <option value="Waiter">Waiter</option>
+                <option value="Runner">Runner</option>
+                <option value="Head Waiter">Head Waiter</option>
+              </select>
+            </div>
+
+            <div class="form-right">
+              <label for="photoUpload">Upload Photo</label>
+              <div class="photo-upload">
+                <input id="photoUpload" name="photoUpload" type="file" accept="image/*" />
+                <img id="photoPreview" alt="Photo preview" class="hidden" />
+                <p id="photoPlaceholder">No photo selected</p>
+              </div>
+            </div>
+
+            <button class="btn" type="submit">Create employee</button>
+          </form>
+        </section>
+
+        <section class="panel section-content hidden" id="workScheduleSection">
+          <h2>Work Schedule</h2>
+          <p class="muted">Plan shifts and check team availability in one view.</p>
+
+          <div class="schedule-helper-card">
+            <h3>How scheduling works</h3>
+            <p class="muted">Drag a staff name into a shift cell. Use x on a pill or drag back to the staff row to remove. Hover pills to show remove actions.</p>
+          </div>
+          
+          <div class="schedule-controls">
+            <div class="schedule-legend">
+              <span class="legend-item">
+                <span class="legend-color available"></span> Available
+              </span>
+              <span class="legend-item">
+                <span class="legend-color maybe"></span> Maybe
+              </span>
+              <span class="legend-item">
+                <span class="legend-color unavailable"></span> Unavailable
+              </span>
+              <span class="legend-item">
+                <span class="legend-color booked"></span> Scheduled
+              </span>
+            </div>
+            <div class="schedule-tools">
+              <label for="scheduleDayFilter">Day</label>
+              <select id="scheduleDayFilter">
+                <option value="all">All days</option>
+              </select>
+              <label for="scheduleRoleFilter">Role</label>
+              <select id="scheduleRoleFilter">
+                <option value="all">All roles</option>
+              </select>
+              <button id="planningModeBtn" class="btn btn-secondary" type="button">Planning mode: Off</button>
+              <button id="compactScheduleBtn" class="btn btn-secondary" type="button">Compact view</button>
+              <button id="undoScheduleBtn" class="btn btn-secondary" type="button" disabled>Undo</button>
+            </div>
+          </div>
+
+          <div class="schedule-grid-container">
+            <div class="employees-list" id="employeesListContainer"></div>
+            <div class="schedule-grid-wrapper">
+              <div class="schedule-grid" id="scheduleGrid"></div>
+            </div>
+          </div>
+
+          <div class="staff-drag-row">
+            <p class="muted">Drag staff into schedule cells. Drag a name back here to remove from a shift.</p>
+            <div class="staff-pool" id="staffPool"></div>
+          </div>
+
+          <details class="panel-subtle schedule-team-availability" open>
+            <summary>Team Availability</summary>
+            <p class="muted">Use this to compare who is free before assigning shifts.</p>
+            <div class="team-availability-grid" id="teamAvailabilityGrid"></div>
+          </details>
+
+          <section class="schedule-activity-panel panel-subtle">
+            <h3>Recent Activity</h3>
+            <div id="scheduleActivityList" class="schedule-activity-list"></div>
+
+            <h3 class="requests-title">Shift Handover Requests</h3>
+            <div id="shiftRequestList" class="shift-request-list"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div id="employeeProfileModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="employeeProfileTitle">
+      <div class="modal-content modal-content-large">
+        <h3 id="employeeProfileTitle">Employee Profile</h3>
+        <div id="employeeProfileContent"></div>
+        <div class="availability-display">
+          <h4>Availability</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Shift</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                  <th>Sun</th>
+                </tr>
+              </thead>
+              <tbody id="employeeAvailabilityBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button id="saveEmployeeAvailabilityBtn" class="btn" type="button">Save changes</button>
+          <button id="closeEmployeeProfileBtn" class="btn btn-secondary" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="saveToast" class="save-toast hidden" role="status" aria-live="polite"></div>
+
+    <script src="app-data.js"></script>
+    <script src="employer.js"></script>
+  </body>
+</html>

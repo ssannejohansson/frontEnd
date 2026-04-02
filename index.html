@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <h1>Sundsgarden</h1>
+          <p>Employee Scheduling</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="index.html" class="active">Login</a>
+        <a href="employer.html">Employer</a>
+        <a href="employee.html">Employee</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>Login</h2>
+        <p class="muted">Sign in to open your dashboard.</p>
+        <form id="loginForm" class="form-grid">
+          <label for="username">User</label>
+          <input id="username" name="username" type="text" required />
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="employee">Employee</option>
+            <option value="employer">Employer</option>
+          </select>
+
+          <button class="btn" type="submit">Sign in</button>
+        </form>
+        <p id="loginError" class="error hidden"></p>
+        <p class="hint">Test users: employer/admin, employee/eva. Password: 1234</p>
+      </section>
+    </main>
+
+    <script src="app-data.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>

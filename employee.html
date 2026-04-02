@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <h1>Sundsgarden</h1>
+          <p>Employee View</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="employee.html" class="active">Dashboard</a>
+      </nav>
+      <button id="logoutBtn" class="btn btn-secondary" type="button">Log out</button>
+    </header>
+
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <button class="sidebar-btn" id="profileBtn" data-section="profile">
+            My Profile
+          </button>
+          <button class="sidebar-btn active" id="availabilityBtn" data-section="availability">
+            Availability
+          </button>
+          <button class="sidebar-btn" id="myScheduleBtn" data-section="mySchedule">
+            My Schedule
+          </button>
+          <button class="sidebar-btn" id="teamAvailabilityBtn" data-section="teamAvailability">
+            Team Availability
+          </button>
+        </nav>
+      </aside>
+
+      <main class="dashboard-main">
+      <section class="panel section-content hidden" id="profileSection">
+        <h2>My Profile</h2>
+        <p class="muted">Edit your profile details. Name changes update your schedule label.</p>
+        <form id="profileForm" class="register-form profile-form">
+          <div class="form-left">
+            <label for="profileName">Name <span class="required">*</span></label>
+            <input id="profileName" name="profileName" type="text" required />
+
+            <label for="profileEmail">Email</label>
+            <input id="profileEmail" name="profileEmail" type="email" />
+
+            <label for="profilePhone">Phone</label>
+            <input id="profilePhone" name="profilePhone" type="tel" />
+          </div>
+
+          <div class="form-right">
+            <label for="profilePhotoUpload">Profile photo</label>
+            <div class="photo-upload">
+              <input id="profilePhotoUpload" name="profilePhotoUpload" type="file" accept="image/*" />
+              <img id="profilePhotoPreview" alt="Profile preview" class="hidden" />
+              <p id="profilePhotoPlaceholder">No photo selected</p>
+            </div>
+          </div>
+
+          <button class="btn" type="submit">Save changes</button>
+        </form>
+      </section>
+
+      <section class="panel section-content" id="availabilitySection">
+        <h2>Availability</h2>
+        <p class="muted" id="employeeGreeting"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Shift</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+              </tr>
+            </thead>
+            <tbody id="availabilityBody"></tbody>
+          </table>
+        </div>
+        <button id="openAvailabilityModalBtn" class="btn" type="button">Edit availability</button>
+      </section>
+
+      <section class="panel section-content hidden" id="myScheduleSection">
+        <h2>Work Schedule</h2>
+        <p class="muted">Manage your assigned shifts for the week.</p>
+
+        <div class="schedule-helper-card">
+          <h3>How scheduling works</h3>
+          <p class="muted">Drag your name into a shift cell to join. Hover your pill and click x to remove yourself.</p>
+        </div>
+
+        <div class="schedule-controls">
+          <div class="schedule-legend">
+            <span class="legend-item">
+              <span class="legend-color booked"></span> Scheduled
+            </span>
+          </div>
+          <div class="schedule-tools">
+            <label for="scheduleDayFilter">Day</label>
+            <select id="scheduleDayFilter">
+              <option value="all">All days</option>
+            </select>
+            <label for="scheduleRoleFilter">Role</label>
+            <select id="scheduleRoleFilter">
+              <option value="all">All roles</option>
+            </select>
+            <button id="compactScheduleBtn" class="btn btn-secondary" type="button">Compact view</button>
+            <button id="undoScheduleBtn" class="btn btn-secondary" type="button" disabled>Undo</button>
+          </div>
+        </div>
+
+        <div class="schedule-grid-container">
+          <div class="employees-list" id="employeesListContainer"></div>
+          <div class="schedule-grid-wrapper">
+            <div class="schedule-grid" id="scheduleGrid"></div>
+          </div>
+        </div>
+
+        <div class="staff-drag-row">
+          <p class="muted">Drag your name into a schedule cell to add yourself to that shift.</p>
+          <div class="staff-pool" id="staffPool"></div>
+        </div>
+
+        <div class="panel-subtle employee-shift-requests">
+          <h3>My Shift Handover Requests</h3>
+          <div id="employeeShiftRequestsList" class="shift-request-list"></div>
+        </div>
+      </section>
+
+      <section class="panel section-content hidden" id="teamAvailabilitySection">
+        <h2>Team Availability</h2>
+        <p class="muted">View availability for all staff members.</p>
+        <div class="team-availability-grid" id="teamAvailabilityGrid"></div>
+      </section>
+      </main>
+    </div>
+
+    <div id="availabilityModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="availabilityModalTitle">
+      <div class="modal-content modal-content-large">
+        <h3 id="availabilityModalTitle">Select availability</h3>
+        <p class="muted">Click each cell to cycle through availability levels.</p>
+        <form id="availabilityForm" class="availability-grid-form">
+          <div id="availabilityGrid" class="availability-grid"></div>
+          <div class="modal-actions">
+            <button id="cancelAvailabilityBtn" class="btn btn-secondary" type="button">Cancel</button>
+            <button class="btn" type="submit">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="shiftGiveawayModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="shiftGiveawayTitle">
+      <div class="modal-content">
+        <h3 id="shiftGiveawayTitle">Give Away Shift</h3>
+        <p class="muted" id="shiftGiveawaySummary"></p>
+        <form id="shiftGiveawayForm" class="form-grid">
+          <label for="shiftGiveawayTarget">Colleague</label>
+          <select id="shiftGiveawayTarget" required></select>
+
+          <label for="shiftGiveawayNote">Note</label>
+          <input id="shiftGiveawayNote" type="text" maxlength="80" placeholder="Optional" />
+
+          <div class="modal-actions">
+            <button id="cancelShiftGiveawayBtn" class="btn btn-secondary" type="button">Cancel</button>
+            <button class="btn" type="submit">Send request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="saveToast" class="save-toast hidden" role="status" aria-live="polite"></div>
+
+    <script src="app-data.js"></script>
+    <script src="employee.js"></script>
+  </body>
+</html>
